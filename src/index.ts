@@ -185,7 +185,7 @@ greet('Nisma');
 
 
 type Customer ={
-  birthDate:Date
+  birthDate?:Date
 }
 
 function getCustomer(id:number):Customer|null|undefined
@@ -198,7 +198,7 @@ let customer = getCustomer(1);
 // if(customer!=null && customer!=undefined)
 // Optional property access operator (we can use optional property access operator to access properties of an object that may not exist)
 
-console.log(customer?.birthDate);
+console.log(customer?.birthDate?.getFullYear());
 
 
 
@@ -206,6 +206,12 @@ console.log(customer?.birthDate);
 //  explored typescript basics and advanced types in typescript (union types, type guards, type aliases, nullable types, type assertions)
 
 
+// optional element access operator (we can use optional element access operator to access elements of an array that may not exist)
+
+// customer?.[0]
+// optional call
+let log:any=null;
+log?.('message');
 
 
 

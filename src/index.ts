@@ -79,7 +79,161 @@ function calculateTax (income:number,taxYear=2022):number{
   }
   return income*0.4;
 }
-calculateTax(100,2023);
+// calculateTax(100,2023);
+
+// objects
+
+let emmployee:{
+  readonly id:number,
+  name:string,
+  retire: (date:Date)=>void
+}
+ ={id :1,
+  name :'Nisma',
+  retire: (date:Date)=>{
+    console.log(date);
+  }
+};
+// employee.id=2; we cannot change the value of a readonly property
+
+// advanced types in typescript (union types, type guards, type aliases, nullable types, type assertions)
+// Dry principle (don't repeat yourself)
+
+// type aliases 
+
+// we can create our own types using type aliases and reuse them in our code
+
+type Employee ={
+  id:number,
+  name:string,
+  retire: (date:Date)=>void
+}
+
+
+let employee:Employee
+ ={id :1,
+  name :'Nisma',
+  retire: (date:Date)=>{
+    console.log(date);
+  }
+};
+
+// union types (we can use union types to combine multiple types into one type like this) weight can be a number or a string in this case
+// let weight:number | string;
+
+function kgToLbs(weight:number | string):number
+{
+  // narrowing
+  if( typeof weight ==="number")
+  {
+    return weight*2.2;
+  }
+  else{
+    return parseFloat(weight)*2.2;
+  }
+}
+kgToLbs(10);
+kgToLbs('10');
+// console.log(kgToLbs('10'));
+// console.log(kgToLbs(10));
+
+// Intersection types (we can use intersection types to combine multiple types into one type like this)
+
+// let employee:Employee & {department:string} // we can use intersection types to combine multiple types into one type like this
+//  '|'(union type) and '&' (intersection type) are called type operators
+// alias uses type operator
+type Draggable={
+  drag:()=>void
+};
+type Resizable={
+  resize:()=>void
+};
+
+type UIWidget = Draggable & Resizable;
+// in this case UIWidget is a type that has all the members of Draggable and Resizable types means that UIWidget is a type that has drag and resize methods in it. & is the intersection type operator
+
+let textBox: UIWidget ={
+  drag:()=>console.log('dragging'),
+  resize:()=>console.log('resizing')
+};
+// in this case textBox is a type that has all the members of Draggable and Resizable types means that textBox is a type that has drag and resize methods in it. & is the intersection type operator
+
+
+// type guards (we can use type guards to narrow down the type of a variable within a conditional block)
+
+
+// Literal types (we can use literal types to specify exact values)
+type Quantity=50|100|200;
+let quantity:Quantity=50;
+type Metric='kg'|'lbs'|'km'|'miles';
+let metric:Metric='kg';
+
+// in this case metric can only be kg or lbs or km or miles, we cannot assign any other value to metric variable . we use | operator to specify literal types
+
+// nullable types (we can use nullable types to allow null values for a variable)
+
+function greet(name:string | null | undefined)
+{
+  if(name)
+  console.log('Hello '+name.toUpperCase());
+  else
+  console.log('Hola!!!!!! ');
+}
+greet('Nisma');
+// greet(null);
+// greet(undefined);
+
+
+type Customer ={
+  birthDate:Date
+}
+
+function getCustomer(id:number):Customer|null|undefined
+{
+  
+  return id===0? null: {birthDate:new Date()};
+
+}
+let customer = getCustomer(1);
+// if(customer!=null && customer!=undefined)
+// Optional property access operator (we can use optional property access operator to access properties of an object that may not exist)
+
+console.log(customer?.birthDate);
+
+
+
+
+//  explored typescript basics and advanced types in typescript (union types, type guards, type aliases, nullable types, type assertions)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
